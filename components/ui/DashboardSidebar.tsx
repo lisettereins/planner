@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Calendar, ListChecks, Image as ImageIcon, Settings, CheckSquare, FileText, BookOpen, Target, Activity } from "lucide-react";
-import MiniCalendar from "@/components/ui/MiniCalendar";
+import { Calendar, ListChecks, Image as ImageIcon, Settings, CheckSquare, FileText, BookOpen, Target, Activity, Minus } from "lucide-react";
+import { useState } from "react";
 
 interface DashboardSidebarProps {
   active?: string; 
@@ -10,33 +10,41 @@ interface DashboardSidebarProps {
 
 export default function DashboardSidebar({ active }: DashboardSidebarProps) {
   const today = new Date().toISOString().split("T")[0];
+  const [showForm, setShowForm] = useState(false);
 
   const getLinkClasses = (name: string) =>
     `hover:text-gray-600 flex items-center gap-2 ${active === name ? "font-bold text-black" : ""}`;
 
+if (!showForm)
+    return (
+      <button
+        onClick={() => setShowForm(true)}
+        className="w-8 h-8 rounded-full bg-[#BDBCB5] border border-[#595753] flex items-center justify-center"
+      >
+        <span className="text-[#595753] font-['Gravitas_One']">
+        &gt;
+      </span>
+      </button>
+    );
   return (
-    <aside className="border-r border-black/10 w-64 p-6">
-      <nav className="space-y-6">
-        {/* Calendar */}
-        <div className="mt-6">
-          <h3 className="font-semibold mb-2">Calendar</h3>
-          <MiniCalendar currentDate={new Date()} onSelectDate={(d) => console.log(d)} />
-          <ul className="space-y-2 text-sm mt-2">
-            <li>
-              <Link
-                href="/calendar"
-                className="hover:text-gray-600 flex items-center gap-2"
-              >
-                <Calendar className="w-4 h-4" strokeWidth={2} /> Calendar View
-              </Link>
-            </li>
-          </ul>
-        </div>
+    <aside className="min-h-screen rounded-[32px] bg-white/20 shadow-[0px_4px_27px_-1px_rgba(0,0,0,0.2)] backdrop-blur-[2px] p-7 overflow-hidden w-64 p-6">
+      <div className="flex justfy-right">
+      <button
+        onClick={() => setShowForm(false)}
+        className="w-8 h-8 rounded-full bg-[#BDBCB5] border border-[#595753] flex items-center justify-center"
+      >
+        <span className="text-[#595753] font-['Gravitas_One']">
+        <Minus/>
+      </span>
+      </button>
+      </div>
+      <nav className="flex flex-col items-center space-y-10 mt-8">
+       
 
         {/* My Items */}
         <div>
-          <h3 className="font-semibold mb-2">My Items</h3>
-          <ul className="space-y-2 text-sm">
+          
+          <ul className="text-[#45433F] font-['Gravitas_One'] space-y-5 text-xl flex flex-col items-center">
             <li>
               <Link href="/daily-tasks" className={getLinkClasses("daily-tasks")}>
                 <CheckSquare className="w-4 h-4" strokeWidth={2} /> Daily Tasks
@@ -82,8 +90,8 @@ export default function DashboardSidebar({ active }: DashboardSidebarProps) {
 
         {/* Settings */}
         <div>
-          <h3 className="font-semibold mt-6 mb-2">Settings</h3>
-          <ul className="space-y-2 text-sm">
+          <h3 className="text-[#595753] font-['Gravitas_One'] mt-6 mb-2 flex flex-col items-center">Settings</h3>
+          <ul className="text-[#45433F] font-['Gravitas_One'] space-y-5 text-xl flex flex-col items-center">
             <li>
               <Link href="/profile" className={getLinkClasses("profile")}>
                 <Settings className="w-4 h-4" strokeWidth={2} /> My Account
