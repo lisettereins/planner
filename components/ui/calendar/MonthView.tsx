@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import DayView from "./DayView"; // DayView peab olemas olema
+import { useState, useEffect } from 'react';
+import DayView from './DayView'; // DayView peab olemas olema
 
 interface MonthViewProps {
   selectedDate: Date; // mingi kuu, näiteks 2025-12-01
@@ -21,13 +21,21 @@ export default function MonthView({ selectedDate }: MonthViewProps) {
 
   // Load saved entries from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem("entries");
+    const saved = localStorage.getItem('entries');
     if (saved) setEntries(JSON.parse(saved));
   }, []);
 
   // Arvuta kuu päevade arv ja kuu alguse nädalapäev
-  const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate();
-  const firstDayIndex = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1).getDay();
+  const daysInMonth = new Date(
+    selectedDate.getFullYear(),
+    selectedDate.getMonth() + 1,
+    0
+  ).getDate();
+  const firstDayIndex = new Date(
+    selectedDate.getFullYear(),
+    selectedDate.getMonth(),
+    1
+  ).getDay();
 
   const days: (Date | null)[] = [];
 
@@ -46,7 +54,6 @@ export default function MonthView({ selectedDate }: MonthViewProps) {
         <button
           onClick={() => setActiveDay(null)}
           className="mb-4 px-3 py-1 border rounded"
-          
         >
           Back to Month
         </button>
@@ -60,8 +67,11 @@ export default function MonthView({ selectedDate }: MonthViewProps) {
     <div>
       {/* Nädalapäevad */}
       <div className="grid grid-cols-7 gap-2 mb-2">
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-          <div key={d} className="text-center font-['Gravitas_One'] font-semibold text-sm p-2 text-[#45433F]">
+        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
+          <div
+            key={d}
+            className="text-center font-['Gravitas_One'] font-semibold text-sm p-2 text-[#45433F]"
+          >
             {d}
           </div>
         ))}
@@ -73,10 +83,12 @@ export default function MonthView({ selectedDate }: MonthViewProps) {
           day ? (
             <button
               key={idx}
-              onClick={() => setActiveDay(day)}
+              onDoubleClick={() => setActiveDay(day)}
               className="border border-white/20 rounded min-h-[80px] p-2 text-left hover:bg-gray-100 transition-colors"
             >
-              <p className="font-semibold text-[#45433F] text-sm mb-1">{day.getDate()}</p>
+              <p className="font-semibold text-[#45433F] text-sm mb-1">
+                {day.getDate()}
+              </p>
               <div className="space-y-1 text-xs">
                 {entries
                   .filter((e) => e.date === day.toISOString().slice(0, 10))
@@ -89,9 +101,9 @@ export default function MonthView({ selectedDate }: MonthViewProps) {
                       {e.title}
                     </div>
                   ))}
-                {entries.filter((e) => e.date === day.toISOString().slice(0, 10)).length > 2 && (
-                  <p className="text-gray-500 text-xs">+ more</p>
-                )}
+                {entries.filter(
+                  (e) => e.date === day.toISOString().slice(0, 10)
+                ).length > 2 && <p className="text-gray-500 text-xs">+ more</p>}
               </div>
             </button>
           ) : (
