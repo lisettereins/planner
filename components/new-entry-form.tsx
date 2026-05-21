@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Plus } from 'lucide-react';
 import NewNoteForm from './new-note-form';
 import AddTaskForm from './ui/tasks/AddTaskForm';
-import NewEventForm from './new-event-form';
 
 export default function NewEntryForm({ date }: { date: string }) {
   const [showForm, setShowForm] = useState(false);
@@ -21,7 +20,6 @@ export default function NewEntryForm({ date }: { date: string }) {
     );
   return (
     <div className="mb-6 p-4 border-2 border-black rounded-sm bg-gray-50">
-      <NewEventForm date={date} />
       <NewNoteForm date={date} />
       <AddTaskForm date={date} />
       <div>
