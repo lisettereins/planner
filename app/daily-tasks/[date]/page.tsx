@@ -1,11 +1,9 @@
-import NewDatePicker from '@/components/new-datepicker';
-import NewHeader from '@/components/new-header';
+
 import Task from '@/components/Task';
 import DashboardSidebar from '@/components/ui/DashboardSidebar';
-import AddTaskForm from '@/components/ui/tasks/AddTaskForm';
-import TaskItem from '@/components/ui/tasks/TaskItem';
+
 import { createClient } from '@/lib/supabase/server';
-import { CheckSquare } from 'lucide-react';
+
 import { redirect } from 'next/navigation';
 
 export default async function DailyTasksPage({

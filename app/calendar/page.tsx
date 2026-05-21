@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import NewHeader from '@/components/new-header';
 import DashboardSidebar from '@/components/ui/DashboardSidebar';
 
 import DayView from '@/components/ui/calendar/DayView';
