@@ -130,19 +130,19 @@ export default function CalendarPage() {
                 onClick={handleNext}
                 className="
                    px-6 py-3
-    rounded-2xl
-    bg-white/20
-    backdrop-blur-md
-    border border-white/20
-    shadow-[0px_4px_20px_rgba(0,0,0,0.15)]
-    text-white
-    font-['Gravitas_One']
-    text-sm
-    tracking-wide
-    transition-all duration-300
-    hover:bg-white/30
-    hover:scale-[1.02]
-    active:scale-[0.98]
+                  rounded-2xl
+                  bg-white/20
+                  backdrop-blur-md
+                  border border-white/20
+                  shadow-[0px_4px_20px_rgba(0,0,0,0.15)]
+                  text-white
+                  font-['Gravitas_One']
+                  text-sm
+                  tracking-wide
+                  transition-all duration-300
+                  hover:bg-white/30
+                  hover:scale-[1.02]
+                  active:scale-[0.98]
                 "
               >
                 →
