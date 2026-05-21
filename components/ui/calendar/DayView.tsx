@@ -59,8 +59,8 @@ export default function DayView({ selectedDate }: DayViewProps) {
   };
 
   return (
-    <div className="relative max-w-4xl mx-auto p-4 border">
-      <h2 className="text-2xl font-bold mb-4">
+    <div className="relative max-w-4xl max-h-[calc(100vh-10rem)] mx-auto overflow-y-auto glass-scrollbar p-4 rounded-[32px] bg-white/20 shadow-[0px_4px_27px_-1px_rgba(0,0,0,0.2)]">
+      <h2 className="text-3xl font-['Gravitas_One'] text-[#45433F] font-bold text-center min-w-[220px]">
         {new Date(selectedDate).toLocaleDateString("en-GB", {
           weekday: "long",
           month: "long",
@@ -68,7 +68,7 @@ export default function DayView({ selectedDate }: DayViewProps) {
         })}
       </h2>
 
-      <div className="relative border-t border-gray-300" style={{ height: hours.length * 50 }}>
+      <div className="relative" style={{ height: hours.length * 50 }}>
         {/* TIME ROWS */}
         {hours.map((h) => (
           <div

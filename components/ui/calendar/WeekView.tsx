@@ -105,23 +105,24 @@ export default function WeekView({ selectedDate }: WeekViewProps) {
 
   return (
     <div className="overflow-x-auto">
-      <h2 className="text-xl font-bold mb-2">
+      <h2 className="text-[#45433F]
+    font-['Gravitas_One'] text-xl font-bold mb-2 ">
         {new Date(days[0]).toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit'})} - {new Date(days[6]).toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit'})}
       </h2>
-
-      <div className="flex border-t border-gray-300 min-w-[900px] relative">
+<div className="bg-white/10">
+      <div className="flex border-t border-white/20 min-w-[900px] relative ">
         <div className="w-12 flex flex-col">
-          {hours.map(h => <div key={h} className="h-10 flex items-center justify-end pr-1 text-xs font-semibold text-gray-600 border-b border-gray-200">{h.toString().padStart(2,'0')}:00</div>)}
+          {hours.map(h => <div key={h} className="h-10 flex items-center justify-end pr-1 text-[12px] font-semibold text-[#45433F] font-['Gravitas_One'] border-b border-white/20">{h.toString().padStart(2,'0')}:00</div>)}
         </div>
 
         {days.map(day => (
-          <div key={day} className="flex-1 border-l border-gray-200 relative">
-            <div className="h-10 flex items-center justify-center border-b border-gray-300 font-bold text-sm bg-gray-50 sticky top-0 z-10">
+          <div key={day} className="flex-1 border-l border-white/10 relative">
+            <div className="h-10 flex items-center justify-center border-b border-white/20 font-bold bg-white/20 text-sm text-[#45433F] font-['Gravitas_One'] sticky top-0 z-10">
               {new Date(day).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
             </div>
 
             <div className="relative h-[960px]">
-              {hours.map(h => <div key={h} className="h-10 border-b border-gray-200"></div>)}
+              {hours.map(h => <div key={h} className="h-10 border-b border-white/20"></div>)}
 
               {entries.filter(e => e.date === day).map(e => {
                 const top = getTop(e.startTime);
@@ -133,53 +134,15 @@ export default function WeekView({ selectedDate }: WeekViewProps) {
                 )
               })}
 
-              {/* Add entry form */}
-              {formVisible && newEntry.date === day && (
-                <div className="absolute left-4 w-[300px] p-4 bg-gray-50 border-2 border-black rounded-sm shadow-md"
-                     style={{ top: getTop(newEntry.startTime || '08:00') }}>
-                  <input
-                    placeholder="Title"
-                    value={newEntry.title || ""}
-                    onChange={e => setNewEntry({ ...newEntry, title: e.target.value })}
-                    className="w-full mb-2 px-3 py-2 border border-gray-400 rounded-sm"
-                  />
-                  <textarea
-                    placeholder="Content"
-                    value={newEntry.content || ""}
-                    onChange={e => setNewEntry({ ...newEntry, content: e.target.value })}
-                    className="w-full mb-2 px-3 py-2 border border-gray-400 rounded-sm resize-none"
-                  />
-                  <div className="flex gap-2 mb-2">
-                    <input
-                      type="time"
-                      value={newEntry.startTime || "08:00"}
-                      onChange={e => setNewEntry({ ...newEntry, startTime: e.target.value })}
-                      className="flex-1 px-3 py-2 border rounded-sm"
-                    />
-                    <input
-                      type="time"
-                      value={newEntry.endTime || "09:00"}
-                      onChange={e => setNewEntry({ ...newEntry, endTime: e.target.value })}
-                      className="flex-1 px-3 py-2 border rounded-sm"
-                    />
-                  </div>
-                  <div className="flex gap-2">
-                    <button onClick={handleAdd} className="flex-1 bg-black text-white py-2 rounded-sm font-semibold">Add</button>
-                    <button onClick={()=>setFormVisible(false)} className="flex-1 border border-black py-2 rounded-sm">Cancel</button>
-                  </div>
-                </div>
-              )}
+              
 
-              {/* Click to open add-entry */}
-              {!formVisible && (
-                <div className="absolute left-0 right-0 top-0 h-full w-full cursor-pointer"
-                     onClick={()=>{setFormVisible(true); setNewEntry({date: day,startTime:'08:00',endTime:'09:00'});}} />
-              )}
+              
 
             </div>
           </div>
         ))}
       </div>
+    </div>
     </div>
   )
 }

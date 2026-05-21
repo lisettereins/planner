@@ -46,6 +46,7 @@ export default function MonthView({ selectedDate }: MonthViewProps) {
         <button
           onClick={() => setActiveDay(null)}
           className="mb-4 px-3 py-1 border rounded"
+          
         >
           Back to Month
         </button>
@@ -60,22 +61,22 @@ export default function MonthView({ selectedDate }: MonthViewProps) {
       {/* Nädalapäevad */}
       <div className="grid grid-cols-7 gap-2 mb-2">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-          <div key={d} className="text-center font-semibold text-sm p-2 text-gray-600">
+          <div key={d} className="text-center font-['Gravitas_One'] font-semibold text-sm p-2 text-[#45433F]">
             {d}
           </div>
         ))}
       </div>
 
       {/* Kuu päevad */}
-      <div className="grid grid-cols-7 gap-2">
+      <div className="min-h-full grid grid-cols-7 gap-2">
         {days.map((day, idx) =>
           day ? (
             <button
               key={idx}
               onClick={() => setActiveDay(day)}
-              className="border rounded min-h-[80px] p-2 text-left hover:bg-gray-100 transition-colors"
+              className="border border-white/20 rounded min-h-[80px] p-2 text-left hover:bg-gray-100 transition-colors"
             >
-              <p className="font-semibold text-sm mb-1">{day.getDate()}</p>
+              <p className="font-semibold text-[#45433F] text-sm mb-1">{day.getDate()}</p>
               <div className="space-y-1 text-xs">
                 {entries
                   .filter((e) => e.date === day.toISOString().slice(0, 10))

@@ -19,11 +19,23 @@ function Providers({ children }: { children: ReactNode }) {
   );
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
-        <Providers>{children}</Providers>
+    <html lang="en">
+      <body className="min-h-screen bg-[#787770]">
+
+        {/* BACKGROUND IMAGE LAYER */}
+        <div
+          className="absolute inset-0 opacity-50 bg-cover bg-center"
+        style={{ backgroundImage: "url('/image.png')" }}
+        />
+
+       
+        {/* APP CONTENT */}
+        <div className="relative z-10">
+          {children}
+        </div>
+
       </body>
     </html>
   );
